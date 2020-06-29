@@ -17,6 +17,12 @@ Route::get('/contact', 'Front\PageController@contact');
 Route::get('/gallery', 'Front\PageController@gallery');
 Route::get('/services', 'Front\PageController@service');
 Route::get('/products', 'Front\PageController@product');
+Route::get('/packages', 'Front\PageController@packages');
+Route::get('/bookings', 'Front\PageController@bookings');
+Route::post('/sendbookings', 'Front\PageController@sendbookings')->middleware('customer');
+Route::get('/my_bookings', 'Front\ProfileController@my_bookings')->middleware('customer');;
+Route::get('/profile', 'Front\ProfileController@profile')->middleware('customer');;
+Route::post('/profile/update/{customer}', 'Front\ProfileController@profileUpdate')->middleware('customer');;
 Route::get('/sign_up', 'Front\PageController@sign_up');
 Route::post('/customer/login', 'Front\AuthController@login');
 Route::get('/customer/logout', 'Front\AuthController@logout');
@@ -46,6 +52,17 @@ Route::prefix('/admin')->middleware('admin')->group(function () {
 
     Route::get('/customers', 'Admin\CustomerController@index');
     Route::get('/customers/delete/{customer}', 'Admin\CustomerController@delete');
+    Route::get('/customers/block/{customer}', 'Admin\CustomerController@block');
+    Route::get('/customers/unblock/{customer}', 'Admin\CustomerController@unblock');
+
+
+    Route::get('/employees', 'Admin\EmployeeController@index');
+    Route::get('/employees/create', 'Admin\EmployeeController@create');
+    Route::post('/employees/store', 'Admin\EmployeeController@store');
+    Route::get('/employees/edit/{employee}', 'Admin\EmployeeController@edit');
+    Route::get('/employees/show/{employee}', 'Admin\EmployeeController@show');
+    Route::post('/employees/update/{employee}', 'Admin\EmployeeController@update');
+    Route::get('/employees/delete/{employee}', 'Admin\EmployeeController@delete');
 
 
     Route::get('/orders', 'Admin\OrderController@index');

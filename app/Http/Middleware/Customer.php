@@ -15,6 +15,9 @@ class Customer
      */
     public function handle($request, Closure $next)
     {
+        if (!auth()->guard('customer')->check()) {
+            return redirect('/sign_up');
+        }
         return $next($request);
     }
 }

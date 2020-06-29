@@ -15,6 +15,20 @@ class CustomerController extends Controller
         return view('admin.customer.index', $data);
     }
 
+    public function unblock(Customer $customer)
+    {
+        $customer->active = 1;
+        $customer->save();
+        return redirect()->back()->with('mgs', ['Success', 'Customer Unblocked Successfully!']);
+    }
+
+        public function block(Customer $customer)
+    {
+        $customer->active = 0;
+        $customer->save();
+        return redirect()->back()->with('mgs', ['Success', 'Customer Blocked Successfully!']);
+    }
+
     public function delete(Customer $customer)
     {
         $customer->delete();

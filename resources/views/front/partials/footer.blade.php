@@ -5,9 +5,9 @@
             <div class="col-md-4 w3layouts_footer_grid">
                 <h2>Contact <span>Information</span></h2>
                 <ul class="con_inner_text">
-                    <li><span class="fa fa-map-marker" aria-hidden="true"></span>1234k Avenue, 4th block, <label> New York City.</label></li>
-                    <li><span class="fa fa-envelope-o" aria-hidden="true"></span> <a href="mailto:info@example.com">info@example.com</a></li>
-                    <li><span class="fa fa-phone" aria-hidden="true"></span> +1234 567 567</li>
+                    <li><span class="fa fa-map-marker" aria-hidden="true"></span>{{ setting('siteAddress') }}</li>
+                    <li><span class="fa fa-envelope-o" aria-hidden="true"></span> <a href="mailto:info@example.com">{{ setting('siteEmail') }}</a></li>
+                    <li><span class="fa fa-phone" aria-hidden="true"></span> {{ setting('sitePhone') }}</li>
                 </ul>
 
                 <ul class="social_agileinfo">
@@ -43,7 +43,7 @@
             <div class="clearfix"> </div>
         </div>
     </div>
-    <p class="copyright">© 2017 Beauty Salon. All Rights Reserved | Design by <a href="https://w3layouts.com/" target="_blank">w3layouts</a></p>
+    <p class="copyright">© 2017 Beauty Salon</a></p>
 </div>
 <!-- //footer -->
 

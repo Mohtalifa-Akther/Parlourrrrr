@@ -6,6 +6,9 @@ use App\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use App\Admin;
+use Notification;
+use App\Notifications\NewCustomerAdded;
 
 class AuthController extends Controller
 {
@@ -13,6 +16,8 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only(['email', 'password']);
+        $credentials["active"] = 1;
+
 
 
         if (Auth::guard('customer')->attempt($credentials)) {
@@ -48,6 +53,12 @@ class AuthController extends Controller
         $customer->password = bcrypt($request->password);
         // dd($request->except('_token'));
         $customer->save();
+
+        $admins = Admin::all();
+        Notification::send($admins, new NewCustomerAdded($customer));
         return redirect()->back()->with('register-success', 'Successfully Registerd');
     }
+
+
+
 }

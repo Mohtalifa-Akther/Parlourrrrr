@@ -5,7 +5,7 @@
        <div class="col-md-12">
                      <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Customer List</h3>
+              <h3 class="box-title">Employee List</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -22,38 +22,29 @@
                     <th>#</th>
                     <th>Image</th>
                     <th>Name</th>
+                    <th>Speciality</th>
                     <th>Phone</th>
                     <th>Email</th>
-                    <th>Status</th>
                     <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
-                      @forelse($customers as $customer)
+                      @forelse($employees as $employee)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td><img src="{{ asset('storage') }}/{{ $customer->avatar }}" width="30" height="30" alt=""></td>
-                    <td>{{ $customer->name }}</td>
-                    <td>{{ $customer->phone }}</td>
-                    <td>{{ $customer->email }}</td>
+                    <td><img src="{{ asset('storage') }}/{{ $employee->avatar }}" width="30" height="30" alt=""></td>
+                    <td>{{ $employee->name }}</td>
+                    <td>{{ $employee->speciality }}</td>
+                    <td>{{ $employee->phone }}</td>
+                    <td>{{ $employee->email }}</td>
                     <td>
-                        @if ($customer->active)
-                            <span class="label label-success">Active</span>
-                        @else
-                            <span class="label label-danger">Blocked</span>
-                        @endif
-                    </td>
-                    <td>
-                        @if (!$customer->active)
-                             <a href="{{ url('admin/customers/unblock',$customer) }}" class="btn btn-flat btn-sm btn-success"><i class="fa fa-heart"></i>Unblock</a>
-                        @else
-                             <a href="{{ url('admin/customers/block',$customer) }}" class="btn btn-flat btn-sm btn-danger"><i class="fa fa-lock"></i>Block</a>
-                        @endif
-                      <a href="{{ url('admin/customers/delete',$customer) }}" class="btn btn-flat btn-sm btn-danger"><i class="fa fa-close"></i></a>
+                      <a href="{{ url('admin/employees/show',$employee) }}" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-eye"></i></a>
+                      <a href="{{ url('admin/employees/edit',$employee) }}" class="btn btn-flat btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
+                      <a href="{{ url('admin/employees/delete',$employee) }}" class="btn btn-flat btn-sm btn-danger"><i class="fa fa-close"></i></a>
                     </td>
                   </tr>
                   @empty
-                  No Customer added yet
+                  No Employee added yet
                   @endforelse
 
                   </tbody>
@@ -63,7 +54,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
-              {{$customers->links()}}
+              {{$employees->links()}}
             </div>
             <!-- /.box-footer -->
           </div>

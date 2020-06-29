@@ -98,39 +98,40 @@
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
+              <span class="label label-warning">{{ count(auth()->guard('admin')->user()->notifications) }}</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
+              <li class="header">You have {{ count(auth()->guard('admin')->user()->notifications) }} notifications</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
-                  <li>
+
+                    @forelse (auth()->guard('admin')->user()->notifications as $notification)
+
+                    <li>
+                        @if($notification->type == "App\Notifications\NewCustomerAdded")
+                        <a href="{{ url("/admin/customers") }}">
+                        <i class="fa fa-users text-aqua"></i> New Customer Added
+                        </a>
+                        @endif
+                        @if($notification->type == "App\Notifications\NewBookingAdded")
+                        <a href="{{ url("/admin/bookings/pending") }}">
+                        <i class="fa fa-calendar-o text-aqua"></i> New Booking Request
+                        </a>
+                        @endif
+                        @if($notification->type == "App\Notifications\NewCustomerAdded")
+                        <a href="{{ url("/admin/orders/pending") }}">
+                        <i class="fa fa-bars text-aqua"></i> New Order Arrived
+                        </a>
+                        @endif
+                    </li>
+                    @empty
+                    <li>
                     <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                      <i class="fa fa-users text-aqua"></i> No Notifications
                     </a>
                   </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                      page and may cause design problems
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-red"></i> 5 new members joined
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-user text-red"></i> You changed your username
-                    </a>
-                  </li>
+                    @endforelse
                 </ul>
               </li>
               <li class="footer"><a href="#">View all</a></li>
@@ -171,7 +172,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{ url('admin/profile') }}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="{{ url('admin/logout') }}" class="btn btn-default btn-flat">Sign out</a>

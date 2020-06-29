@@ -1,0 +1,7 @@
+    Route::get('/employees', 'Admin\EmployeeController@index');
+    Route::get('/employees/create', 'Admin\EmployeeController@create');
+    Route::post('/employees/store', 'Admin\EmployeeController@store');
+    Route::get('/employees/edit/{employee}', 'Admin\EmployeeController@edit');
+    Route::get('/employees/show/{employee}', 'Admin\EmployeeController@show');
+    Route::post('/employees/update/{employee}', 'Admin\EmployeeController@update');
+    Route::get('/employees/delete/{employee}', 'Admin\EmployeeController@delete');

@@ -81,3 +81,39 @@
 <script src="{{asset('js')}}/bootstrap.js"></script>
 <script src="{{asset('js')}}/parsley.js"></script>
 <!-- //for bootstrap working -->
+
+
+<script>
+    if(localStorage.getItem('cart')== undefined){
+        localStorage.setItem('cart',JSON.stringify([]))
+    }
+    var cart = JSON.parse(localStorage.getItem('cart'))
+    var btnCart = document.getElementById("btnCart");
+    var item = {}
+    btnCart.innerHTML = cart.length;
+
+    function addToCart(product)
+    {
+
+        cart.push(product);
+        localStorage.setItem('cart',JSON.stringify(cart))
+        btnCart.innerHTML = cart.length;
+
+    }
+
+    function loadCart()
+    {
+        if(cart.length < 0){
+            var cartDive = document.getElementById('cartDiv');
+
+            var html = ""
+            cart.forEach((product,index) => {
+                html += `
+                    <tr> <td>${index+1}</td><td> ${product.name}</td><td></td><td></td></tr>
+                `
+            });
+        }
+    }
+
+
+</script>

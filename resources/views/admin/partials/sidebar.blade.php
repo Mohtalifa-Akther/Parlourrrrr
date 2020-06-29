@@ -108,6 +108,19 @@
           </ul>
         </li>
 
+        <li class="treeview {{ Request::is('admin/employees*') ? 'active' : ''}}">
+          <a href="#">
+            <i class="fa fa-users"></i> <span>Employees</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+              <li class="{{ Request::is('admin/employees/create') ? 'active' : '' }}"><a href="{{ url('/admin/employees/create') }}"><i class="fa fa-circle-o"></i> New Employee</a></li>
+            <li class="{{ Request::is('admin/employees') ? 'active' : '' }}"><a href="{{ url('/admin/employees') }}"><i class="fa fa-circle-o"></i> All Employees</a></li>
+          </ul>
+        </li>
+
         <li class="header">Administrative</li>
         <li class="{{ Request::is('admin/profile') ? 'active' : ''}}"><a href="{{ url('/admin/profile') }}"><i class="fa fa-user text-aqua"></i> <span>Profile</span></a></li>
         <li class="{{ Request::is('admin/settings') ? 'active' : ''}}"><a href="{{ url('/admin/settings') }}"><i class="fa fa-cogs text-aqua"></i> <span>Settings</span></a></li>

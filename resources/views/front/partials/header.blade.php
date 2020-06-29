@@ -1,19 +1,25 @@
 <!-- banner -->
 <div class="  @if(Request::is('/')) banner @else banner-1 @endif jarallax" id="home">
-    <header>
+    <header >
         <div class="container">
             <div class="header-bottom-agileits">
                 <div class="w3-logo">
-                    <h1><a href="index.html">Beauty Salon</a></h1>
+                        <a href="/"><img src="{{ asset('storage') }}/{{ setting('siteLogo') }}" alt="" width="80" height="50"></a>
+                    <h1></h1>
                 </div>
                 <div class="address">
-                    <p>4th block,New York City.</p>
-                    <p class="para-y"><a href="about.html">Get more info</a></p>
+                    <p>{{ setting('siteAddress') }}</p>
+                    <p class="para-y"><a href="{{ setting('/about') }}">Get more info</a></p>
                 </div>
                 <div class="nav-contact-w3ls">
-                    <p>+0 111 222 333<span class="fa fa-phone" aria-hidden="true"></span></p>
-                    <p class="para-y"><a href="mailto:info@example.com">info@example.com</a><span class="fa fa-envelope-o" aria-hidden="true"></span></p>
+                    <p>{{ setting('sitePhone') }}<span class="fa fa-phone" aria-hidden="true"></span></p>
+                    <p class="para-y"><a href="mailto:info@example.com">{{ setting('siteEmail') }}</a><span class="fa fa-envelope-o" aria-hidden="true"></span></p>
+
                 </div>
+                {{-- <div class="shopping-cart" style="position: fixed;top:33px;right:0px; ">
+                        <button class="btn btn-danger text-white pull-right" style="border-radius: 0px;"><i class="badge badge-default" id="btnCart">0</i> <br>   <i class="fa fa-shopping-cart"></i>   Cart  </button>
+                </div> --}}
+
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -37,8 +43,8 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li><a class="active" href="{{url('/')}}">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="services.html">Services</a></li>
+                        <li><a href="{{ url('/about') }}">About</a></li>
+                        <li><a href="{{ url('/services') }}">Services</a></li>
                         {{-- <li class="dropdown">
                             <a href="#" class="dropdown-toggle effect-3" data-toggle="dropdown">Pages<b class="caret"></b></a>
                             <ul class="dropdown-menu agile_short_dropdown">
@@ -46,8 +52,8 @@
                                 <li><a href="typography.html">Typography</a></li>
                             </ul>
                         </li> --}}
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="{{ url('/packages') }}">Packages</a></li>
+                        <li><a href="{{  url('/contact')  }}">Contact</a></li>
                          @if(!auth()->guard('customer')->check())
                         <li><a class="btn btn-info" href="{{ url('/sign_up') }}">Signup/Sign In</a></li>
                          @endif
@@ -56,9 +62,9 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle effect-3" data-toggle="dropdown">{{ substr( auth()->guard('customer')->user()->name,0,7) }}.<b class="caret"></b></a>
                             <ul class="dropdown-menu agile_short_dropdown">
-                                <li><a href="icons.html">Profile</a></li>
-                                <li><a href="typography.html">Bookings</a></li>
-                                <li><a href="typography.html">Products</a></li>
+                                <li><a href="{{ url('/profile') }}">Profile</a></li>
+                                <li><a href="{{ url('/my_bookings') }}">Bookings</a></li>
+                                {{-- <li><a href="typography.html">Products</a></li> --}}
                                 <li><a href="{{ url('/customer/logout') }}">Logout</a></li>
                             </ul>
                         </li>
@@ -86,7 +92,7 @@
                                 <h2>Enjoy Professional Beauty Services!</h2>
                                 <p>Providing expert skin care advice & beauty services using natural products to cater for any skin.</p>
                                 <div class="botton">
-                                    <a href="contact.html">Contact Now</a>
+                                    <a href="{{ url('/contact') }}">Contact Now</a>
                                 </div>
                             </div>
                         </li>
@@ -96,7 +102,7 @@
                                 <h2>Are You Planning to Pamper Yourself?</h2>
                                 <p>Providing expert skin care advice & beauty services using natural products to cater for any skin.</p>
                                 <div class="botton">
-                                    <a href="contact.html">Contact Now</a>
+                                    <a href="{ url('/contact') }}">Contact Now</a>
                                 </div>
                             </div>
                         </li>
@@ -106,7 +112,7 @@
                                 <h2>Enjoy Professional Beauty Services!</h2>
                                 <p>Providing expert skin care advice & beauty services using natural products to cater for any skin.</p>
                                 <div class="botton">
-                                    <a href="contact.html">Contact Now</a>
+                                    <a href="{ url('/contact') }}">Contact Now</a>
                                 </div>
                             </div>
                         </li>
